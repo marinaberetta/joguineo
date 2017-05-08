@@ -1,0 +1,45 @@
+<ion-content>
+    <ion-list>
+        <ion-grid>
+            <ion-row>
+                <ion-item id="acao">
+                    <ion-label>Ação</ion-label>
+                    <ion-select id="selectMethod" onchange="onChange(carbrand)">
+                    <ion-option value="insert">PUT</ion-option>
+                    <ion-option value="editar">UPDATE</ion-option>
+                    <ion-option value="delete">DELETE</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label stacked>Nome</ion-label>
+                    <ion-input type="text" id="nome"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label stacked>Pontuação</ion-label>
+                    <ion-input type="text" id="pontuacao"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label stacked>Senha</ion-label>
+                    <ion-input type="password" id="senha"></ion-input>
+                </ion-item>
+            </ion-row>
+            <div class="botoes" style="display: flex; justify-content: space-between;">
+                
+                <button ion-button onclick="makePost()">Enviar</button>
+                <ion-icon style="font-size: 3em;" name="refresh" onclick="carregaListagem()"></ion-icon>
+            </div>
+
+            <ion-row>
+                <ion-list style="width: 100%;" id="aqui">
+                </ion-list>
+            </ion-row>
+
+        </ion-grid>
+    </ion-list>
+</ion-content>
