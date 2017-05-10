@@ -10,8 +10,6 @@ public class tiro : MonoBehaviour {
 
     public float tempoVivo = 0;
 
-    public int isFromPlayer = 0;
-
     // Use this for initialization
     void Start () {
 		

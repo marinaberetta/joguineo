@@ -20,8 +20,6 @@ public class Space_Ship_Controller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-
         getClickToMove();
         tempodesdeultimotiro += Time.deltaTime;
 
@@ -50,9 +48,7 @@ public class Space_Ship_Controller : MonoBehaviour {
     {
         if (tempodesdeultimotiro > intervalo_tiros)
         {
-            GameObject tiro =Instantiate(tiro_obj, transform.position + Vector3.up*1.1f, Quaternion.identity);
-            tiro t = (tiro) tiro.GetComponent("tiro");
-            t.isFromPlayer = 1;
+            Instantiate(tiro_obj, transform.position + Vector3.up*1.1f, Quaternion.identity);
             tempodesdeultimotiro = 0;
         }
     }

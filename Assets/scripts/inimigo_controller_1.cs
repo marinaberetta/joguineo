@@ -33,15 +33,10 @@ public class inimigo_controller_1 : MonoBehaviour {
     {
         if (other.tag == "Tiro")
         {
-            tiro t = (tiro)other.gameObject.GetComponent("tiro");
             Destroy(other.gameObject);
-            if (t.isFromPlayer == 1)
-            {
-                ((Space_Ship_Controller)((GameObject)GameObject.FindGameObjectWithTag("Jogador")).GetComponent("Space_Ship_Controller")).pontuacao = ((Space_Ship_Controller)((GameObject)GameObject.FindGameObjectWithTag("Jogador")).GetComponent("Space_Ship_Controller")).pontuacao + pontos_que_o_inimigo_da;
-            }else
-            {
-                ((ai_controller)((GameObject)GameObject.FindGameObjectWithTag("AI")).GetComponent("ai_controller")).pontuacao = ((ai_controller)((GameObject)GameObject.FindGameObjectWithTag("AI")).GetComponent("ai_controller")).pontuacao + pontos_que_o_inimigo_da;
-            }
+
+            ((Space_Ship_Controller)((GameObject)GameObject.FindGameObjectWithTag("Jogador")).GetComponent("Space_Ship_Controller")).pontuacao = ((Space_Ship_Controller)((GameObject)GameObject.FindGameObjectWithTag("Jogador")).GetComponent("Space_Ship_Controller")).pontuacao+pontos_que_o_inimigo_da;
+
             vida -= 1;
         }
     }
