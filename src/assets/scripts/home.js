@@ -2,55 +2,57 @@ $(document).ready(function(){
     carregaListagem();
 });
 
+api_url = "http://localhost:8888/allan/api.php"
 
 function carregaListagem(){
     $('#aqui').html('');
     $.ajax({
-        url: "http://localhost:8888/trabalhos/navarro/api.php", 
+        url: api_url, 
         method: "POST",
         data: {tipo: "get"}})
         .done(function(resp){
             var res = JSON.parse(resp);
             var html = "";
             res.forEach(function(el){
-                html += '<ion-item class="item item-block item-ios"><div class="item-inner"><div class="input-wrapper">\
-                            <ion-label class="label label-ios">\
-                                <h2>'+el.nome+'</h2>\
-                                <p>'+el.pontuacao+'</p>\
-                            </ion-label>\
-                        </div></div><div class="button-effect"></div></ion-item>';
+                html += '<ion-item class="item item-block item-ios excluirItem" data-nome="'+el.nome+'">\
+                            <div class="item-inner"><div class="input-wrapper">\
+                                <ion-label class="label label-ios">\
+                                    <h2>'+el.nome+'</h2>\
+                                    <p>'+el.pontuacao+'</p>\
+                                </ion-label>\
+                            </div></div><div class="button-effect"></div>\
+                        </ion-item>';
             });
             $('#aqui').html(html);
         }
     );
 }
 
-function makePost(){
-    var method = $('#selectMethod').find('.select-text').text();
-    var nome = $('#nome').find('input');
-    var pontuacao = $('#pontuacao').find('input');
-    var senha = $('#senha').find('input');
+function makePost(dados){
     $.ajax({
-        url: "http://localhost:8888/trabalhos/navarro/api.php", 
+        url: api_url, 
         method: "POST",
-        data: {tipo: method, nome: nome.val(), senha: senha.val(), pontuacao: pontuacao.val()}})
-        .done(function(resp){
-            if(resp==="OK"){
-                carregaListagem();
-                nome.val('');
-                pontuacao.val('');
-                senha.val('');
-            }
+        data: dados
+    }).done(function(resp){
+        if(resp==="OK"){
+            carregaListagem();
         }
-    );
+    });
 }
 
-$('body').on('click', 'button[ion-button=alert-button]:nth-child(2)', function(){
-    var method = $('#selectMethod').find('.select-text').text();
-    var campo = $('#pontuacao').parent().parent().parent().parent();
-    if(method=='DELETE'){
-        campo.css('display', 'none');
-    }else{
-        campo.css('display', 'block');
-    }
+$('body').on('click', '.excluirItem', function(){
+    nome = $(this).data('nome')
+    $('#excluirNome').val(nome)
+    $('.alert-sub-title').html('Usuário: '+nome)
 });
+
+$('body').on('click', 'button[ng-reflect-ng-class=excluirBtn]', function(){
+    excluirPontuacao();
+});
+
+function excluirPontuacao(){
+    pass = $('#excluirPass').val()
+    nome = $('#excluirNome').val()
+    dados = {tipo: 'delete', nome: nome, senha: pass}
+    makePost(dados);
+}

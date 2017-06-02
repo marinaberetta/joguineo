@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: http://localhost:8102");
+header("Access-Control-Allow-Origin: http://localhost:8100");
     
 
     //INSERT
@@ -12,11 +12,10 @@ header("Access-Control-Allow-Origin: http://localhost:8102");
     //$_POST = ["tipo"=>"editar","codigo":1,"nova_pontuacao":2,"senha":"senha"];
 
 
-
     if($_POST['tipo']=="PUT") $_POST['tipo'] = "insert";
     if($_POST['tipo']=="UPDATE") $_POST['tipo'] = "editar";
     if($_POST['tipo']=="DELETE") $_POST['tipo'] = "delete";
-    $mysqli = new mysqli("localhost", "root", "root", "navarro1");
+    $mysqli = new mysqli("localhost", "root", "root", "allan");
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
