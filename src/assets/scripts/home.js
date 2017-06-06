@@ -1,8 +1,8 @@
+api_url = "http://localhost/allan/api.php"
+
 $(document).ready(function(){
     carregaListagem();
 });
-
-api_url = "http://localhost:8888/allan/api.php"
 
 function carregaListagem(){
     $('#aqui').html('');
@@ -56,3 +56,10 @@ function excluirPontuacao(){
     dados = {tipo: 'delete', nome: nome, senha: pass}
     makePost(dados);
 }
+
+$('body').on('keydown', 'input[id=excluirPass]', function(e){
+    var key = e.keyCode
+    if(key==13){
+        excluirPontuacao();
+    }
+});
